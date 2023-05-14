@@ -7,6 +7,12 @@
 > .\venv\Scripts\activate.bat #激活虚拟环境
 > 
 > pip install -r requirements.txt # 安装项目依赖，可能不全，根据提示自行安装即可
+cd static
+mkdir media
+cd media 
+mkdir ptoto
+mkdir img
+mkdir banner
 ```
 
 访问 /admin 可进入后台界面
