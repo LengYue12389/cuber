@@ -14,7 +14,22 @@ mkdir ptoto
 mkdir img
 mkdir banner
 ```
+在config.py里还设置一下自己的数据库密码
+以及SECRET_KEY 随便设置一个字符串就行
 
-访问 /admin 可进入后台界面
-用户名 root
-密码：aabbcc
+创建数据库 
+```sql
+CREATE DATABASE registration_system;
+```
+安装依赖以后创建数据库表
+```bash
+# 初始化会生成migrate文件夹
+python manager.py db init
+# 生成迁移文件
+python manager.py db migrate
+# 创建数据库表
+python manager.py db upgrade 
+```
+
+运行
+python manager.py
