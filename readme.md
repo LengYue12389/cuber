@@ -30,6 +30,6 @@ python manager.py db migrate
 # 创建数据库表
 python manager.py db upgrade 
 # 运行项目
-
+python manager.py
 ```
 
