@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% from 'macro/date_macro.html' import date with context %}
+{% block content %}
+    <div class="page-header">
+        <h1>编辑通知</h1>
+    </div>
+    {% from 'macro/form_errors.html' import form_field_errors %}
+    <form method="POST">
+        {{ form.csrf_token }}
+        {% include 'components/flash_message.html' %}
+        <div class="create-home-notice">
+            {{ form.title.label }}
+            {{ form.title  (class='form-control', value=notice_obj.title) }}
+        </div>
+        <div class="create-home-notice">
+            {{ date(form.release_time) }}
+        </div>
+        {{ form.content.label }}
+        {{ form.content (class='form-control') }}
+        {{ form.submit(class="btn btn-primary btn-lg btn-success") }}
+    </form>
+{% endblock %}

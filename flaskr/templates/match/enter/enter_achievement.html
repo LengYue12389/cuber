@@ -1,0 +1,126 @@
+{% extends 'base.html' %}
+{% from 'macro/form_errors.html' import form_field_errors %}
+{% block content %}
+    <div class="page-header">
+        <h1 style="text-align: center">{{ match_data['name'] }}</h1>
+    </div>
+    <form method="POST" class="sign-up">
+        <h3>录入</h3>
+        {% include 'components/flash_message.html' %}
+        {{ enter_form.csrf_token }}
+        <div class="enter-option">
+            <div class="form-group enter-left">
+                {{ enter_form.cuber_option_enter.label }}
+                {{ enter_form.cuber_option_enter (class="radio") }}
+            </div>
+            <div class="form-group enter-right">
+                {{ enter_form.competition_options_enter.label }}
+                {{ enter_form.competition_options_enter (class="radio") }}
+            </div>
+        </div>
+        <div>
+            <div class="enter-time">
+                <span>ID：</span>
+                {{ enter_form.user_id_enter (class='form-control', id='user-id') }}
+            </div>
+            {{ form_field_errors(enter_form.user_id_enter.errors) }}
+            <div class="enter-time">
+                <span>T1：</span>
+                {{ enter_form.time_1 (class='form-control', id="input-1") }}
+                <button id="btn-1" type="button" class="btn btn-warning mybtn t1-dnf" onclick="setT1()">DNF</button>
+            </div>
+            <div class="enter-time">
+                <span>T2：</span>
+                {{ enter_form.time_2 (class='form-control', id="input-2") }}
+                <button id="btn-2" type="button" class="btn btn-warning mybtn t2-dnf" onclick="setT2()">DNF</button>
+            </div>
+            <div class="enter-time">
+                <span>T3：</span>
+                {{ enter_form.time_3 (class='form-control', id="input-3") }}
+                <button id="btn-3" type="button" class="btn btn-warning mybtn t3-dnf" onclick="setT3()">DNF</button>
+            </div>
+            <div class="enter-time">
+                <span>T4：</span>
+                {{ enter_form.time_4 (class='form-control', id="input-4") }}
+                <button id="btn-4" type="button" class="btn btn-warning mybtn t4-dnf" onclick="setT4()">DNF</button>
+            </div>
+            <div class="enter-time">
+                <span>T5：</span>
+                {{ enter_form.time_5 (class='form-control', id="input-5") }}
+                <button id="btn-5" type="button" class="btn btn-warning mybtn t5-dnf" onclick="setT5()">DNF</button>
+            </div>
+            <div class="btn-ach">
+                {{ enter_form.submit_enter(class="btn btn-primary btn-lg", id='enter-ach') }}
+                <button type="button" class="btn btn-lg btn-danger" onclick="clearForm()">清空</button>
+            </div>
+
+        </div>
+    </form>
+    <div class="delete-ach-form">
+        <form method="POST" class="sign-up">
+            <h3>删除</h3>
+            {{ delete_form.csrf_token }}
+            <div class="enter-option">
+                <div class="form-group enter-left">
+                    {{ delete_form.cuber_option_delete.label }}
+                    {{ delete_form.cuber_option_delete (class="radio") }}
+                </div>
+                <div class="form-group enter-right">
+                    {{ delete_form.competition_options_delete.label }}
+                    {{ delete_form.competition_options_delete (class="radio") }}
+                </div>
+            </div>
+            <div>
+                <div class="enter-time">
+                    <span>ID：</span>
+                    {{ delete_form.user_id_delete (class='form-control', id='user-delete') }}
+                    {{ delete_form.submit_delete(class="btn btn-danger mybtn ", id='delete-ach' ) }}
+                </div>
+                {{ form_field_errors(delete_form.user_id_delete.errors) }}
+
+            </div>
+        </form>
+    </div>
+
+
+    <script>
+        $('#delete-ach').click(function () {
+            var bool = confirm("将删除该选手的该轮次的成绩数据")
+            if (bool) {
+                $(this).submit()
+            } else {
+                return false
+            }
+        })
+
+        function setT1() {
+            document.getElementById('input-1').value = 99999
+        }
+
+        function setT2() {
+            document.getElementById('input-2').value = 99999
+        }
+
+        function setT3() {
+            document.getElementById('input-3').value = 99999
+        }
+
+        function setT4() {
+            document.getElementById('input-4').value = 99999
+        }
+
+        function setT5() {
+            document.getElementById('input-5').value = 99999
+        }
+
+        function clearForm() {
+            document.getElementById('user-id').value = null
+            document.getElementById('input-1').value = null
+            document.getElementById('input-2').value = null
+            document.getElementById('input-3').value = null
+            document.getElementById('input-4').value = null
+            document.getElementById('input-5').value = null
+        }
+
+    </script>
+{% endblock %}

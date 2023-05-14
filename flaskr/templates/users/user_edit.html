@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% from 'macro/form_errors.html' import form_field_errors %}
+{% from 'macro/date_macro.html' import date with context %}
+
+{% block content %}
+    <div class="container">
+        <form class="form-signin" method="POST" action="">
+            {{ form.csrf_token }}
+            {% include 'components/flash_message.html' %}
+            <h2 class="form-signin-heading">编辑资料</h2>
+            {{ form.name.label }}
+            {{ form.name (class='form-control', value=current_user.name) }}
+            {{ form.sex.label }}
+            {{ form.sex (class='form-control', value=current_user.sex) }}
+            {{ date(form.birthday) }}
+            <div style="margin-top: 30px; color: #b92c28">
+                <p>*您可以在这里重新设置密保问题和答案</p>
+            </div>
+            {{ form.confidentiality_question.label }}
+            {{ form.confidentiality_question (class='form-control', value=current_user.get_user_confidentiality.confidentiality_question) }}
+            {{ form.confidentiality_answer.label }}
+            {{ form.confidentiality_answer (class='form-control', value=current_user.get_user_confidentiality.confidentiality_answer) }}
+            <button class="btn btn-lg btn-primary btn-block" style="margin-top: 12px" type="submit">提交</button>
+        </form>
+    </div>
+{% endblock %}

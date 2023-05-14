@@ -1,0 +1,117 @@
+{% extends 'base.html' %}
+{% from 'macro/user_ach_macro.html' import get_user_ach %}
+{% block content %}
+    <div class="page-header">
+        <h1>选手主页</h1>
+    </div>
+    <div class="box-line"></div>
+    <h3 style="text-align: center">{{ user.name }}</h3>
+    {% if user_avatar %}
+        <div class="head-portrait user-profile user-avatar">
+            <img src="/static/media/photo/{{ user_avatar.avatar }}" alt="...">
+        </div>
+    {% endif %}
+    <div class="user-info">
+        <div class="user-info-detail">
+            <span class="tag-title">选手ID：</span><span>{{ user.id }}</span>
+        </div>
+        <div class="user-info-detail">
+            <span class="tag-title">姓别：</span><span>{{ user.sex }}</span>
+        </div>
+        <div class="user-info-detail">
+            <span class="tag-title">参赛次数：</span><span>{{ user_competition_count }}</span>
+        </div>
+    </div>
+    <h3>个人最好成绩</h3>
+    <div class="panel panel-default">
+        <!-- Default panel contents -->
+        <!-- Table -->
+        <table class="table table-bordered table-condensed table-hover table-boxed  global-table competition-table">
+            <thead>
+            <tr>
+                <td>项目</td>
+                <td>单次</td>
+                <td>五次平均</td>
+            </tr>
+            </thead>
+            <tbody>
+            {% if user_ach['cuber_333_best'] or user_ach['cuber_333_ao5'] %}
+                <tr>
+                    <td>三阶</td>
+                    <td>{{ user_ach['cuber_333_best'].best|two_decimal|default('/', boolean=True)|set_dnf_time }}</td>
+                    <td>{{ user_ach['cuber_333_ao5'].ao5|two_decimal|default('/', boolean=True)|set_dnf_time }}</td>
+                </tr>
+            {% endif %}
+            {% if  user_ach['cuber_222_best'] or user_ach['cuber_222_ao5'] %}
+                <tr>
+                    <td>二阶</td>
+                    <td>{{ user_ach['cuber_222_best'].best|two_decimal|default('/', boolean=True)|set_dnf_time }}</td>
+                    <td>{{ user_ach['cuber_222_ao5'].ao5|two_decimal|default('/', boolean=True)|set_dnf_time }}</td>
+                </tr>
+            {% endif %}
+            {% if  user_ach['cuber_oh_best'] or user_ach['cuber_oh_ao5'] %}
+                <tr>
+                    <td>单手</td>
+                    <td>{{ user_ach['cuber_oh_best'].best|two_decimal|default('/', boolean=True)|set_dnf_time }}</td>
+                    <td>{{ user_ach['cuber_oh_ao5'].ao5|two_decimal|default('/', boolean=True)|set_dnf_time }}</td>
+                </tr>
+            {% endif %}
+            {% if  user_ach['cuber_sk_best'] or user_ach['cuber_sk_ao5'] %}
+                <tr>
+                    <td>斜转</td>
+                    <td>{{ user_ach['cuber_sk_best'].best|two_decimal|default('/', boolean=True)|set_dnf_time }}</td>
+                    <td>{{ user_ach['cuber_sk_ao5'].ao5|two_decimal|default('/', boolean=True)|set_dnf_time }}</td>
+                </tr>
+            {% endif %}
+            {% if  user_ach['cuber_py_best'] or user_ach['cuber_py_ao5'] %}
+                <tr>
+                    <td>金字塔</td>
+                    <td>{{ user_ach['cuber_py_best'].best|two_decimal|default('/', boolean=True)|set_dnf_time }}</td>
+                    <td>{{ user_ach['cuber_py_ao5'].ao5|two_decimal|default('/', boolean=True)|set_dnf_time }}</td>
+                </tr>
+            {% endif %}
+            </tbody>
+        </table>
+    </div>
+    <h3>参赛概况</h3>
+
+    <ul class="nav nav-tabs" id="myTab">
+        <li role="presentation" class="active"><a href="#item">按项目</a></li>
+        <li role="presentation"><a href="#match">按比赛</a></li>
+    </ul>
+    <div class="tab-content">
+        <div class="tab-pane active" id="item">
+            <div class="panel panel-default">
+                <table class="table table-bordered table-condensed table-hover table-boxed ach-detail global-table">
+                    {{ get_user_ach(user.cuber_333_all, '三阶') }}
+                    {{ get_user_ach(user.cuber_222_all, '二阶') }}
+                    {{ get_user_ach(user.cuber_oh_all, '单手') }}
+                    {{ get_user_ach(user.cuber_sk_all, '斜转') }}
+                    {{ get_user_ach(user.cuber_py_all, '金字塔') }}
+                </table>
+            </div>
+        </div>
+        <div class="tab-pane" id="match">
+            <div class="tab-pane active" id="item">
+                <div class="panel panel-default">
+                    <table class="table table-bordered table-condensed table-hover table-boxed ach-detail global-table">
+                        {{ get_user_ach(user.cuber_333_all, '三阶') }}
+                        {{ get_user_ach(user.cuber_222_all, '二阶') }}
+                        {{ get_user_ach(user.cuber_oh_all, '单手') }}
+                        {{ get_user_ach(user.cuber_sk_all, '斜转') }}
+                        {{ get_user_ach(user.cuber_py_all, '金字塔') }}
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $('#myTab a').click(function (e) {
+            e.preventDefault();
+            $(this).tab('show');
+        })
+    </script>
+
+
+{% endblock %}

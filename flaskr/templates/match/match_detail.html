@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h1 class="detail-h1">{{ competition.match_name }}</h1>
+    <div><span class="tag-title">时间：</span><span>{{ competition.match_time.strftime('%Y-%m-%d') }}</span></div>
+    <div>
+        <span class="tag-title">地址：</span><span>{{ competition.address }}</span>
+    </div>
+    <div>
+        <span class="tag-title">开设项目：</span>
+        <span>{{ competition.project_opening }}</span>
+    </div>
+    {% if competition.registration_fee != '0' %}
+        <div>
+            <span class="tag-title">基础报名费：</span>
+            <span>{{ competition.registration_fee }}</span>
+        </div>
+        <div>
+            <span class="tag-title">项目报名费：</span>
+            <span>{{ competition.item_registration_free }}</span>
+        </div>
+    {% endif %}
+    <div>
+        <span class="tag-title">报名截止时间：</span>
+        <span>{{ competition.registration_end_time.strftime('%Y-%m-%d') }}</span>
+    </div>
+    <div>
+        <span class="tag-title">报名人数限制：</span>
+        <span>{{ competition.number_of_applicants }}</span>
+    </div>
+    <div class="match-detail">
+        <h2 class="detail-h2">比赛详情</h2>
+        {% if competition.details == '' %}
+            <p>暂无信息</p>
+        {% else %}
+            {{ competition.details | safe }}
+        {% endif %}
+    </div>
+    {% if competition.match_time.strftime('%Y%m%d') >  current_time and competition.registration_end_time.strftime('%Y%m%d')
+            >current_time %}
+        <button type="button" class="btn btn-primary btn-lg btn-mar-bot btn-success button-sign">
+            <a href="{{ url_for('match.sign_up', match_id=match_id) }}">立即报名</a>
+        </button>
+    {% endif %}
+         <button type="button" class="btn btn-primary btn-lg btn-mar-bot button-sign">
+            <a href="{{ url_for('match.get_entries', match_id=match_id) }}">查看已报名选手</a>
+        </button>
+{% endblock %}

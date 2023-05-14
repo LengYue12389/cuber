@@ -1,0 +1,9 @@
+{% extends 'admin/master.html' %}   #为了保持一致，继承admin/master.html模板
+
+{% block body %}
+    <div class="jumbotron">
+        <h1>你好，管理员</h1>
+        <p>欢迎来到米吉魔方赛事网后台管理系统</p>
+        <p><a class="btn btn-primary btn-lg" href="{{ url_for('match.index') }}" role="button">回到首页</a></p>
+    </div>
+{% endblock %}

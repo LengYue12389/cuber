@@ -1,0 +1,10 @@
+{% macro search(search_name) %}
+    <form method="GET">
+        <div class="input-group search-con">
+            <input type="text" class="form-control" placeholder="{{ search_name }}" name="search">
+            <span class="input-group-btn">
+        <button class="btn btn-default" type="submit">搜索</button>
+      </span>
+        </div>
+    </form>
+{% endmacro %}

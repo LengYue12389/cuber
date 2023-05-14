@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% from 'macro/date_macro.html' import date %}
+{% block content %}
+    <div class="page-header">
+        <h1>发布赛事</h1>
+    </div>
+    {% from 'macro/form_errors.html' import form_field_errors %}
+    {% include 'components/flash_message.html' %}
+    <form method="POST" action="{{ url_for('match.create_match') }}">
+        {{ form.csrf_token }}
+        <div class="create-match-info">
+            {{ form.match_name.label }}
+            {{ form.match_name  (class='form-control') }}
+        </div>
+        <div class="create-match-info">
+            {{ form.address.label }}
+            {{ form.address  (class='form-control') }}
+
+        </div>
+        <div class="create-match-info">
+            {{ date(form.match_time) }}
+        </div>
+        <div class="create-match-info">
+            {{ date(form.registration_end_time) }}
+        </div>
+        <div class="create-match-info">
+
+            {{ form.project_opening.label }}
+            {{ form.project_opening (class='form-control') }}
+        </div>
+        <div class="create-match-info">
+            {{ form.number_of_applicants.label }}
+            {{ form.number_of_applicants  (class='form-control') }}
+        </div>
+        <div class="create-match-info">
+            {{ form.registration_fee.label }}
+            {{ form.registration_fee (class='form-control') }}
+        </div>
+        <div class="create-match-info">
+            {{ form.item_registration_free.label }}
+            {{ form.item_registration_free (class='form-control') }}
+        </div>
+        {{ form.details.label }}
+        {{ form.details (class='form-control') }}
+        {{ form.submit(class="btn btn-primary btn-lg btn-success") }}
+    </form>
+{% endblock %}
+
+

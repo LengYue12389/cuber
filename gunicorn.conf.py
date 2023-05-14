@@ -1,0 +1,11 @@
+worker = 4  # 进程数
+thread = 2  # 每个进程的线程数
+bind = "0.0.0.0:5000"  # 监听地址端口
+worker_class = "gevent"   # 工作模式 协程
+# worker_connection = 2000   # 设置最大连接数
+# pidfile = "gunicorn.pid"   # 设置进程文件目录
+# accesslog = "logs/access.log"
+# errorlog = "logs/error.log"
+loglevel = "info"
+reload = True  # 自动重新加载
+debug = False

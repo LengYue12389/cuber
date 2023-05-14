@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="page-header">
+        <h1>我的报名</h1>
+    </div>
+
+    <div class="panel panel-default">
+        <!-- Default panel contents -->
+        <!-- Table -->
+        <table class="table table-bordered table-condensed table-hover table-boxed  global-table competition-table">
+            <thead>
+            <tr>
+                <td>序号</td>
+                <td>日期</td>
+                <td>比赛名称</td>
+                <td>报名时间</td>
+                <td>报名项目</td>
+            </tr>
+            </thead>
+            <tbody>
+            {% if registration %}
+                {% for info, competition in registration %}
+                    <tr>
+                        <td>{{ loop.index }}</td>
+                        <td>{{ competition.match_time.strftime('%Y-%m-%d') }}</td>
+                        <td>
+                            <a href="{{ url_for('match.match_details', match_id=competition.id) }}">{{ competition.match_name }}</a>
+                        </td>
+                        <td>{{ info.add_time }}</td>
+                        <td>{{ info.registration_items }}</td>
+                    </tr>
+                {% endfor %}
+            {% else %}
+                <tr>
+                    <td>
+                        <p>暂无数据</p>
+                    </td>
+                </tr>
+            {% endif %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

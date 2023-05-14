@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% from 'macro/form_errors.html' import form_field_errors %}
+
+{% block content %}
+    <div class="container">
+        <form class="form-signin" method="POST" action="{{ url_for('users.register') }}">
+            {{ form.csrf_token }}
+            {% include 'components/flash_message.html' %}
+            <h2 class="form-signin-heading">用户注册</h2>
+            {{ form.name.label }}
+            {{ form.name (class='form-control') }}
+            {{ form.sex.label }}
+            {{ form.sex (class='form-control') }}
+            {% include 'components/data_components.html' %}
+            {{ form.username.label }}
+            {{ form.username (class='form-control') }}
+            {{ form_field_errors(form.username.errors) }}
+            {{ form.password.label }}
+            {{ form.password (type="password", class='form-control') }}
+            {{ form.confirm_password.label }}
+            {{ form.confirm_password (type="password", class='form-control') }}
+            {{ form_field_errors(form.password.errors) }}
+            {{ form_field_errors(form.confirm_password.errors) }}
+            <div style="margin-top: 30px; color: #b92c28">
+                <p>*设置密保将用于账号找回，请牢记</p>
+            </div>
+            {{ form.confidentiality_question.label }}
+            {{ form.confidentiality_question (class='form-control') }}
+            {{ form.confidentiality_answer.label }}
+            {{ form.confidentiality_answer (class='form-control') }}
+            <button class="btn-mar-bot btn btn-lg btn-primary btn-block "
+                    style="margin-bottom: 12px; margin-top: 12px"
+                    type="submit">注册</button>
+            <div style="margin-bottom: 12px">
+                <a class="link-text" href="{{ url_for('users.login') }}">已有账号，去登录</a>
+            </div>
+
+        </form>
+    </div>
+{% endblock %}

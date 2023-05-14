@@ -1,0 +1,57 @@
+# flask-demo/docker/docker-compose.yml
+
+version: "3"
+services:
+  app:
+    build: ./app
+    stdin_open: true
+    tty: true
+    ports:
+      - "8897:8897"
+    container_name: "flask-demo"
+    volumes:
+      - ../: /home/root/flask-demo: rw
+    working_dir: /home/root/flask-demo/src/app
+    depends_on:
+  	  - mysql
+    command: gunicorn -c ./gun_cfg.py manage:app
+
+  mysql:
+    build: ./mysql
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./data/mysql:/var/lib/mysql:rw
+    environment:
+      MYSQL_ROOT_PASSWORD: "test123"
+      TZ: Asia/Shanghai
+	restart: always
+
+  nginx:
+    build: ./nginx
+    ports:
+      - "80:80"
+    container_name: "flask-nginx"
+    volumes：
+      - ./docker/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ../:/home/root/flask-demo:rw
+    depends_on:
+      - app
+
+# flask-demo/docker/app/Dockerfile
+FROM python:3.7
+
+COPY requirements.txt ./
+RUN pip3 install --no-cache-dir -i https://pypi.douban.com/simple/ -r requirements.txt
+
+
+# flask-demo/docker/nginx/Dockerfile
+FROM nginx:1.9.9
+
+COPY ./nginx.conf /etc/nginx/nginx.conf
+
+
+# flask-demo/docker/mysql/Dockerfile
+FROM mysql:5.6
+
+COPY ./init.sql /docker-entrypoint-initdb.d

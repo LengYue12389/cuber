@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% from 'macro/form_errors.html' import form_field_errors %}
+
+{% block content %}
+<div class="container">
+    <form class="form-signin" method="POST" action="{{ url_for('users.login') }}">
+        {{ form.csrf_token }}
+    {% include 'components/flash_message.html' %}
+        <h2 class="form-signin-heading">用户登录</h2>
+        {{ form.username.label }}
+        {{ form.username (class='form-control') }}
+        {{ form.password.label }}
+        {{ form.password (type="password", class='form-control') }}
+        {{ form_field_errors(form.username.errors) }}
+        {{ form_field_errors(form.password.errors) }}
+        <input type="hidden" name="next" value="{{ next_url | d('') }}">
+        <div class="checkbox">
+        </div>
+        <button class="btn btn-lg btn-primary btn-block btn-mar-bot" type="submit">登录</button>
+        <a class="link-text" href="{{ url_for('users.register') }}" style="margin-right: 30px">还没有账号，去注册</a>
+        <a class="link-text" href="{{ url_for('users.forget_password') }}">忘记密码</a>
+    </form>
+
+</div>
+{% endblock %}

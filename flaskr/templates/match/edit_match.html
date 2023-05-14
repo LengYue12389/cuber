@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% from 'macro/date_macro.html' import date with context %}
+{% from 'macro/date_macro.html' import date2 with context %}
+{% block content %}
+    <div class="page-header">
+        <h1>编辑赛事</h1>
+    </div>
+    {% from 'macro/form_errors.html' import form_field_errors %}
+    <form method="POST">
+        {{ form.csrf_token }}
+        {% include 'components/flash_message.html' %}
+        <div class="create-match-info">
+            {{ form.match_name.label }}
+            {{ form.match_name  (class='form-control', value=match_obj.match_name) }}
+        </div>
+        <div class="create-match-info">
+            {{ form.address.label }}
+            {{ form.address  (class='form-control', value=match_obj.address) }}
+
+        </div>
+        <div class="create-match-info">
+            {{ date(form.match_time) }}
+        </div>
+        <div class="create-match-info">
+            {{ date2(form.registration_end_time) }}
+        </div>
+        <div class="create-match-info">
+
+            {{ form.project_opening.label }}
+            {{ form.project_opening (class='form-control', value=match_obj.project_opening) }}
+        </div>
+        <div class="create-match-info">
+            {{ form.number_of_applicants.label }}
+            {{ form.number_of_applicants  (class='form-control', value=match_obj.number_of_applicants) }}
+        </div>
+        <div class="create-match-info">
+            {{ form.registration_fee.label }}
+            {{ form.registration_fee (class='form-control', value=match_obj.registration_fee) }}
+        </div>
+        <div class="create-match-info">
+            {{ form.item_registration_free.label }}
+            {{ form.item_registration_free (class='form-control') }}
+        </div>
+        {{ form.details.label }}
+        {#        {{ ckeditor.create(value=match_obj.details) }}#}
+        {{ form.details (class='form-control') }}
+        {{ form.submit(class="btn btn-primary btn-lg btn-success") }}
+    </form>
+{% endblock %}
+
+

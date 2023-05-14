@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% from 'macro/form_errors.html' import form_field_errors %}
+{% block content %}
+    <form method="POST" class="sign-up">
+        {% include 'components/flash_message.html' %}
+        <h1>报名信息</h1>
+        {{ form.csrf_token }}
+        <div class="form-group">
+            <span class="tag-title">姓名：</span><span>{{ current_user.name }}</span>
+        </div>
+        <div class="form-group">
+             <span class="tag-title">生日：</span><span>{{ current_user.birthday }}</span>
+        </div>
+        <div class="form-group">
+             <span class="tag-title">手机号：</span><span>{{ current_user.username }}</span>
+        </div>
+        <div class="form-group">
+            <label>报名项目：</label>
+            <div class="checkbox">
+                {% for i in display %}
+                    <label class="checkbox-inline">
+                        {{ i }}{{ i.label.text }}
+                    </label>
+                {% endfor %}
+            </div>
+        </div>
+        {{ form.submit(class="btn btn-primary btn-lg btn-success") }}
+    </form>
+
+{% endblock %}

@@ -1,0 +1,43 @@
+{% macro get_ach_data(data, competition_options, options, project_opening) %}
+    {% with %}
+        {% set t = namespace(value=False) %}
+        {% for i, j, k in data %}
+            {% if competition_options in k %}
+                {% set t.value = True %}
+            {% endif %}
+        {% endfor %}
+        {% if '三阶' in project_opening and t.value == True  %}
+            <tbody>
+            <tr class="tr">
+                <td colspan="6" style="padding-top: 10px;
+                    padding-bottom: 10px">{{ options }}&nbsp;&nbsp;&nbsp;&nbsp;{{ competition_options }}
+                </td>
+            </tr>
+            <tr>
+                <th>排名</th>
+                <th>选手</th>
+                <th>最好</th>
+                <th>五次平均</th>
+                <th>详情</th>
+            </tr>
+            {% with %}
+                {% set num = namespace(value=1) %}
+                {% for user, item, _ in data %}
+                    {% if item.competition_options in competition_options %}
+                        <tr>
+                            <td>{{ num.value }}</td>
+                            {% set num.value = num.value + 1 %}
+                            <td><a href="{{ url_for('users.webpage', user_id=user.id) }}">{{ user.name }}</a></td>
+                            <td>{{ item.best|two_decimal|default("", boolean=True)|set_dnf_time }}</td>
+                            <td>{{ item.ao5|two_decimal|default("/", boolean=True)|set_dnf_time }}</td>
+                            <td>
+                                <pre>{{ item.t1|two_decimal|default("", boolean=True)|set_dnf_time }}&nbsp;&nbsp;&nbsp;&nbsp;{{ item.t2|two_decimal|default("", boolean=True)|set_dnf_time }}&nbsp;&nbsp;&nbsp;&nbsp;{{ item.t3|two_decimal|default("", boolean=True)|set_dnf_time }}&nbsp;&nbsp;&nbsp;&nbsp;{{ item.t4|two_decimal|default("", boolean=True)|set_dnf_time }}&nbsp;&nbsp;&nbsp;&nbsp;{{ item.t5|two_decimal|default("", boolean=True)|set_dnf_time }}</pre>
+                            </td>
+                        </tr>
+                    {% endif %}
+                {% endfor %}
+            {% endwith %}
+            </tbody>
+        {% endif %}
+    {% endwith %}
+{% endmacro %}

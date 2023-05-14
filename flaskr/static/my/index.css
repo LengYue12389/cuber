@@ -1,0 +1,336 @@
+/*@media (min-width: 1200px) {*/
+/*    .container {*/
+/*        max-width: 970px;*/
+
+/*    }*/
+/*}*/
+
+
+h1 {
+    text-align: left;
+}
+
+.body {
+    position: relative;
+}
+
+.form-signin {
+    width: 320px;
+    margin: 0 auto;
+}
+
+/*将用户登录置于中间*/
+
+/*修改button属性*/
+.button {
+    text-align: center;
+    vertical-align: middle;
+}
+
+.logo-miki {
+    height: 75px;
+}
+
+.navbar-header img {
+    height: 35px;
+    margin-top: -12px;
+    margin-right: 8px;
+    margin-left: 10px;
+}
+
+.sign-up {
+    min-width: 300px;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.content {
+    min-height: calc(100vh - 120px);
+    margin-top: 60px;
+}
+
+.panel-default {
+    white-space: nowrap;
+    overflow-x: scroll;
+}
+
+.footer {
+    height: 60px;
+    font-size: 12px;
+    text-align: center;
+    color: #6f6f6f;
+}
+
+.achievement-table thead tr {
+    background: #358ac3;
+    font-size: 15px;
+    color: #ffffff;
+    font-weight: bold;
+}
+
+.global-table {
+    min-width: 600px;
+
+}
+
+.competition-table thead tr {
+    background: #358ac3;
+    font-size: 15px;
+    color: #ffffff;
+    font-weight: bold;
+}
+
+.title {
+    line-height: 50px;
+    font-size: 30px;
+    color: #ffffff;
+    font-weight: bold;
+    margin-right: 20px;
+}
+
+.a-title {
+    text-decoration: none;
+}
+
+.match-detail{
+    word-wrap: break-word;
+}
+
+.match-detail img {
+    max-width: 100%!important;
+    height: auto!important;
+}
+
+.title {
+    font-weight: bold;
+}
+
+.tag-title {
+    font-weight: bold;
+}
+
+.detail-h1 {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.detail-h2 {
+    margin-top: 45px;
+    margin-bottom: 20px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.button-sign {
+    margin-top: 10px;
+}
+
+.button-sign a {
+    text-decoration: none;
+    color: #ffffff;
+}
+
+/*@media (max-width:1600px) {*/
+/*    .detail img {*/
+/*    width: auto;*/
+/*    height: auto;*/
+/*    max-width: 50%;*/
+/*    max-height: 50%;*/
+/*}*/
+/*}*/
+
+/*.span-state {*/
+/*    margin-left: 10px;*/
+/*}*/
+
+.search-con {
+    max-width: 500px;
+    margin-bottom: 10px;
+}
+
+.ach {
+    margin-top: 10px;
+}
+
+/*.datetimepicker-dropdown-bottom-right  {*/
+/*    left: 423.6px;*/
+/*    z-index: 1010;*/
+/*    display: block;*/
+/*    top: 237.6px;*/
+/*}*/
+
+/*.span-close {*/
+/*    position: relative;*/
+/*    top: 1px;*/
+/*    right: 5px;*/
+/*    color: inherit;*/
+/*}*/
+
+
+.alert-dismissable .close, .alert-dismissible .close {
+     position: initial;
+    /*top: -2px;*/
+    /*right: -21px;*/
+    color: inherit;
+}
+
+
+tbody pre {
+    display: contents;
+    max-width: max-content;
+}
+
+.tr {
+    background: white;
+    color: black;
+    font-weight: normal;
+}
+
+/*.ach-detail{*/
+/*    border: white;*/
+/*}*/
+
+.ach-detail th {
+    background: #358ac3;
+    color: white;
+}
+
+.enter-time {
+    display: flex;
+    margin-bottom: 8px;
+    align-items: center;
+}
+
+.mybtn {
+    margin-left: 5px;
+}
+
+.enter-option {
+    display: flex;
+    justify-content: space-around;
+    border: 1px solid #c9c9c9;
+    margin-bottom: 12px;
+}
+
+.enter-left{
+    margin-top: 18px;
+}
+
+.enter-right {
+    margin-top: 18px;
+}
+
+.delete-ach-form{
+    margin-top: 60px;
+}
+
+.btn-ach {
+    text-align: center;
+}
+
+.user-profile img {
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.article{
+    margin-top: 25px;
+}
+
+.article-title-bg {
+    background: #358ac3;
+}
+
+.article-title {
+    color: white;
+}
+
+.article {
+    border: 1px solid #358ac3;
+}
+
+.author {
+    color: #23527c;
+    margin-right: 30px;
+}
+
+.desc {
+    overflow: hidden;
+    display: -WEBkit-box;
+    -webkit-box-orient:vertical;
+    -webkit-line-clamp:8;
+}
+
+.user-info {
+    display: flex;
+    border: 1px solid #bce8f1;
+    padding: 10px;
+    margin-top: 30px;
+    justify-content: space-around;
+}
+
+/*.user-info-detail {*/
+/*    margin-right: 30px;*/
+/*}*/
+
+.user-avatar{
+    text-align: center;
+}
+
+.user-avatar img {
+    max-height: 450px;
+    max-width: 100%!important;
+    height: auto!important;
+}
+
+.user-info-detail-my {
+    border: 1px solid #bce8f1;
+    padding: 10px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+.item-info {
+    display: flex;
+    justify-content: space-around;
+}
+
+.ach-detail-info {
+    margin-bottom: 10px;
+}
+
+.btn-mar-bot{
+    margin-bottom: 12px;
+}
+
+.user-avatar-form {
+    display: flex;
+}
+
+.create-match-info {
+
+}
+
+.about-info{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    background-color: #e0e0e0;
+    height: 152px;
+}
+
+.about-info h4 {
+    text-align: center;
+    height: 27px;
+    line-height: 33px;
+}
+
+.about-info img {
+    margin: 0 auto;
+}
+
+.about-feedback {
+    font-size: 10px;
+    color: #7b7b7b;
+}

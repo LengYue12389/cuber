@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% from 'macro/search.html' import search %}
+{% block content %}
+    <div class="page-header">
+        <h1>比赛</h1>
+    </div>
+    {{ search('搜索比赛') }}
+    <div class="panel panel-default">
+        <!-- Default panel contents -->
+        <!-- Table -->
+        <table class="table table-bordered table-condensed table-hover table-boxed achievement-table global-table">
+            <thead>
+            <tr>
+                <td>日期</td>
+                <td>比赛名称</td>
+                <td>地址</td>
+            </tr>
+            </thead>
+            <tbody>
+            {% if sli_content %}
+                {% for ach in sli_content %}
+                    <tr>
+                        <td>
+                            {{ ach.match_time }}
+                        </td>
+                        <td>
+                            <a href="{{ url_for('match.achievement_detail', ach_id=ach.id, match_id=ach.match_id) }}">{{ ach.match_name }}</a>
+                        </td>
+                        <td>
+                            {{ ach.address }}
+                        </td>
+                    </tr>
+                {% endfor %}
+            {% else %}
+                <tr>
+                    <td>
+                        <p>暂无数据</p>
+                    </td>
+                </tr>
+            {% endif %}
+            </tbody>
+        </table>
+    </div>
+    {{ current_page.links }}
+{% endblock %}

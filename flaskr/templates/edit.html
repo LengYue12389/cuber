@@ -1,0 +1,17 @@
+{% extends 'admin/model/edit.html' %} <!-- 声明继承 Flask-Admin 的模型编辑模板 -->
+<script type="text/javascript" src="../static/ckeditor/ckeditor.js"></script>
+{% block tail %}
+    <!-- 向父模板的 tail 块内追加内容 -->
+    {{ super() }}
+    <!-- 加载 CKEditor 的 JavaScript 文件，默认从 CDN 获取 -->
+    {{ ckeditor.load(custom_url=url_for('static', filename='ckeditor/ckeditor.js')) }}
+    <script>
+        // 字段detail是要替换的字段
+        CKEDITOR.replace('details', {
+                height:500, // 编辑器的高度
+                filebrowserUploadUrl: '/upload', // 图片文件要上传的路径,加?是为了添加粘贴上传的功能
+                disallowedContent: 'img{width,height};img[width,height]' // 去掉上传图片之后，默认添加的width和height
+            });
+    </script>
+{% endblock %}
+

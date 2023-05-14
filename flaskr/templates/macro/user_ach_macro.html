@@ -1,0 +1,30 @@
+{% macro get_user_ach(user, options) %}
+    {% if user %}
+        <tbody>
+        <tr class="tr">
+            <td colspan="6" style="padding-top: 10px; padding-bottom: 10px">{{ options }}
+            </td>
+        </tr>
+        <tr>
+            <th>赛事</th>
+            <th>轮次</th>
+            <th>最好</th>
+            <th>五次平均</th>
+            <th>详情</th>
+        </tr>
+        {% for match_nanme, match_id, cuber_333 in user %}
+            <tr>
+                <td>
+                    <a href="{{ url_for('match.achievement_detail',match_id=match_id ) }}">{{ match_nanme }}</a>
+                </td>
+                <td>{{ cuber_333.competition_options }}</td>
+                <td>{{ cuber_333.best|two_decimal|default("", boolean=True)|set_dnf_time }}</td>
+                <td>{{ cuber_333.ao5|two_decimal|default("/", boolean=True)|set_dnf_time }}</td>
+                <td>
+                    <pre>{{ cuber_333.t1|two_decimal|default("", boolean=True)|set_dnf_time }}&nbsp;&nbsp;&nbsp;&nbsp;{{ cuber_333.t2|two_decimal|default("", boolean=True)|set_dnf_time }}&nbsp;&nbsp;&nbsp;&nbsp;{{ cuber_333.t3|two_decimal|default("", boolean=True)|set_dnf_time }}&nbsp;&nbsp;&nbsp;&nbsp;{{ cuber_333.t4|two_decimal|default("", boolean=True)|set_dnf_time }}&nbsp;&nbsp;&nbsp;&nbsp;{{ cuber_333.t5|two_decimal|default("", boolean=True)|set_dnf_time }}</pre>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    {% endif %}
+{% endmacro %}

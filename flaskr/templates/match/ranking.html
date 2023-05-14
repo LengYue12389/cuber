@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="page-header">
+        <h1>排名</h1>
+    </div>
+    <form>
+        {{ form.cuber.label }}
+        {{ form.cuber }}
+        {{ form.sex.label }}
+        {{ form.sex }}
+        {{ form.submit (value='单次') }}
+        {{ form.submit (value='平均') }}
+    </form>
+    {% if request.args.get('submit') == '单次' or temp %}
+        <div class="panel panel-default">
+            <table class="table table-bordered table-condensed table-hover table-boxed ach-detail global-table">
+                <tbody>
+                <tr class="tr">
+                    <td colspan="6" style="padding-top: 10px;
+                    padding-bottom: 10px">{{ request.args.get('cuber')|default('三阶', True) }}&nbsp;&nbsp;&nbsp;&nbsp;{{ request.args.get('sex')|default('所有', True) }}&nbsp;&nbsp;&nbsp;&nbsp;单次
+                    </td>
+                </tr>
+                <tr>
+                    <th>排名</th>
+                    <th>选手</th>
+                    <th>成绩</th>
+                    <th>比赛</th>
+                    <th>日期</th>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    {% endif %}
+    {% if request.args.get('submit') == '平均' %}
+        <div class="panel panel-default">
+            <table class="table table-bordered table-condensed table-hover table-boxed ach-detail global-table">
+                <tbody>
+                <tr class="tr">
+                    <td colspan="6" style="padding-top: 10px;
+                    padding-bottom: 10px">{{ request.args.get('cuber') }}&nbsp;&nbsp;&nbsp;&nbsp;{{ request.args.get('sex') }}&nbsp;&nbsp;&nbsp;&nbsp;平均
+                    </td>
+                </tr>
+                <tr>
+                    <th>排名</th>
+                    <th>选手</th>
+                    <th>成绩</th>
+                    <th>比赛</th>
+                    <th>日期</th>
+                    <th>详情</th>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    {% endif %}
+{% endblock content %}

@@ -1,0 +1,22 @@
+{% from 'macro/ach_macro.html' import get_ach_data %}
+<table class="table table-bordered table-condensed table-hover table-boxed ach-detail global-table">
+    {{ get_ach_data(data['ach_cuber_333'], '初赛', '三阶', project_opening) }}
+    {{ get_ach_data(data['ach_cuber_333'], '复赛', '三阶', project_opening) }}
+    {{ get_ach_data(data['ach_cuber_333'], '决赛', '三阶', project_opening) }}
+
+    {{ get_ach_data(data['ach_cuber_222'], '初赛', '二阶',project_opening) }}
+    {{ get_ach_data(data['ach_cuber_222'], '复赛', '二阶',project_opening) }}
+    {{ get_ach_data(data['ach_cuber_222'], '决赛', '二阶',project_opening) }}
+
+    {{ get_ach_data(data['ach_cuber_oh'], '初赛', '单手',project_opening) }}
+    {{ get_ach_data(data['ach_cuber_oh'], '复赛', '单手',project_opening) }}
+    {{ get_ach_data(data['ach_cuber_oh'], '决赛', '单手',project_opening) }}
+
+    {{ get_ach_data(data['ach_cuber_sk'], '初赛', '斜转',project_opening) }}
+    {{ get_ach_data(data['ach_cuber_sk'], '复赛', '斜转',project_opening) }}
+    {{ get_ach_data(data['ach_cuber_sk'], '决赛', '斜转',project_opening) }}
+
+    {{ get_ach_data(data['ach_cuber_py'], '初赛', '金字塔',project_opening) }}
+    {{ get_ach_data(data['ach_cuber_py'], '复赛', '金字塔',project_opening) }}
+    {{ get_ach_data(data['ach_cuber_py'], '决赛', '金字塔',project_opening) }}
+</table>

@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% from 'macro/search.html' import search %}
+{% block content %}
+    <div class="page-header">
+        <h1>选手</h1>
+    </div>
+    {{ search('搜索选手') }}
+    <div class="panel panel-default">
+        <!-- Default panel contents -->
+        <!-- Table -->
+        <table class="table table-bordered table-condensed table-hover table-boxed  global-table competition-table">
+            <thead>
+            <tr>
+                <td>姓名</td>
+                <td>选手ID</td>
+                <td>姓别</td>
+            </tr>
+            </thead>
+            <tbody>
+            {% if sli_content %}
+                {% for item in sli_content %}
+                    {% if (item.cuber_333_best or item.cuber_333_ao5) or
+                        (item.cuber_222_best or item.cuber_222_ao5) or
+                        (item.cuber_oh_best or item.cuber_oh_ao5) or
+                        (item.cuber_sk_best or item.cuber_sk_ao5) or
+                        (item.cuber_py_best or item.cuber_py_ao5) %}
+                        <tr>
+                            <td><a href="{{ url_for('users.webpage', user_id=item.id) }}">{{ item.name }}</a></td>
+                            <td>{{ item.id }}</td>
+                            <td>{{ item.sex }}</td>
+                        </tr>
+                    {% endif %}
+                {% endfor %}
+            {% else %}
+                <tr>
+                    <td>
+                        <p>暂无数据</p>
+                    </td>
+                </tr>
+            {% endif %}
+            </tbody>
+        </table>
+    </div>
+    {{ current_page.links }}
+{% endblock %}

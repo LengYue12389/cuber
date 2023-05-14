@@ -1,0 +1,12 @@
+{# flask消息 #}
+{% for  category, message in get_flashed_messages(with_categories=True) %}
+<!-- 消息通知区域 -->
+<div class="alert alert-{{ category }} alert-dismissible fade in" role="alert">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true" class="span-close">×</span></button>
+  {% autoescape false %}
+  <span>{{ message }}</span>
+  {% endautoescape %}
+</div>
+<!-- // 消息通知区域 -->
+{% endfor %}
+

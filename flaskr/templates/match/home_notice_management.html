@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% from 'macro/search.html' import search %}
+{% block content %}
+    <div class="page-header">
+        <h1>首页推送管理</h1>
+    </div>
+    <div>
+        <a href="{{ url_for('match.create_home_notice') }}">
+            <button type="button" class="btn btn-success">
+                发布新通知
+            </button>
+        </a>
+    </div>
+    <div class="panel panel-default">
+        <!-- Default panel contents -->
+        <!-- Table -->
+        <table class="table table-bordered table-condensed table-hover table-boxed  global-table competition-table">
+            <thead>
+            <tr>
+                <td>标题</td>
+                <td>日期</td>
+                <td>操作</td>
+            </tr>
+            </thead>
+            <tbody>
+            {% if sli_content %}
+                {% for item in sli_content %}
+                    <tr>
+                        <td>{{ item.title }}</td>
+                        <td>{{ item.release_time }}</td>
+                        <td>
+                            <a href="{{ url_for('match.edit_notice', notice_id=item.id) }}">
+                                <button type="button" class="btn btn-info"
+                                        value="">编辑
+                                </button>
+                            </a>
+                            <button type="button" class="btn btn-danger delete-data"
+                                    value="{{ url_for('api.delete_notice', notice_id=item.id) }}">删除
+                            </button>
+                        </td>
+                    </tr>
+                {% endfor %}
+            {% else %}
+                <tr>
+                    <td>
+                        <p>暂无数据</p>
+                    </td>
+                </tr>
+            {% endif %}
+            </tbody>
+        </table>
+    </div>
+    {{ current_page.links }}
+    <script src="../../static/my/jquery.min.js"></script>
+    <script>
+        $('.delete-data').click(function () {
+            var bool = confirm("将删除本条通知")
+            var matchId = $(this).val()
+            if (bool) {
+                $.ajax({
+                    type: 'DELETE',
+                    url: matchId,
+                    success: (res) => {
+                        alert(res.result)
+                        window.location.reload();
+                    },
+                    error: () => {
+                        alert('服务器繁忙，请稍后重试')
+                    }
+                })
+            }
+        })
+    </script>
+
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="page-header">
+        <h1>已报名选手</h1>
+    </div>
+    <h3>已报名人数：{{ count[0] }}/{{ num.number_of_applicants }}</h3>
+    <div class="panel panel-default">
+        <!-- Default panel contents -->
+        <!-- Table -->
+        <table class="table table-bordered table-condensed table-hover table-boxed  global-table competition-table">
+            <thead>
+            <tr>
+                <td>序号</td>
+                <td>选手</td>
+                <td>性别</td>
+                <td>项目</td>
+            </tr>
+            </thead>
+            <tbody>
+            {% if entries %}
+                {% for user, user_enter_info in entries %}
+                    <tr>
+                        <td>{{ loop.index }}</td>
+                        <td>{{ user_enter_info.name }}</td>
+                        <td>{{ user.sex }}</td>
+                        <td>{{ user_enter_info.registration_items }}</td>
+                    </tr>
+                {% endfor %}
+            {% else %}
+                <tr>
+                    <td>
+                        <p>暂无数据</p>
+                    </td>
+                </tr>
+            {% endif %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% from 'macro/search.html' import search %}
+{% block content %}
+    <div class="page-header">
+        <h1>赛事列表</h1>
+    </div>
+    {{ search('搜索比赛') }}
+    <div class="panel panel-default">
+        <!-- Default panel contents -->
+        <!-- Table -->
+        <table class="table table-bordered table-condensed table-hover table-boxed  global-table competition-table">
+            <thead>
+            <tr>
+                <td>日期</td>
+                <td>状态</td>
+                <td>比赛名称</td>
+                <td>地址</td>
+            </tr>
+            </thead>
+            {% if sli_content %}
+                <tbody>
+                {% for item in sli_content %}
+                    <tr>
+                        <td>
+                            {{ item.match_time.strftime('%Y-%m-%d') }}
+                        </td>
+                        <td>
+                            {% if item.registration_end_time.strftime('%Y%m%d') >  current_time %}
+                                <span class="label label-success span-state ">报名中</span>
+                            {% elif item.match_time.strftime('%Y%m%d') ==  current_time %}
+                                <span class="label label-warning span-state">进行中</span>
+                            {% elif item.registration_end_time.strftime('%Y%m%d') ==  current_time or
+                                 item.registration_end_time.strftime('%Y%m%d')< current_time < item.match_time.strftime('%Y%m%d') %}
+                                <span class="label label-default span-state">截止报名</span>
+                            {% else %}
+                                <span class="label label-primary span-state ">已结束</span>
+                            {% endif %}
+                        </td>
+                        <td>
+                            <a href="{{ url_for('match.match_details', match_id=item.id) }}">{{ item.match_name }}</a>
+                        </td>
+                        <td>
+                            {{ item.address }}
+                        </td>
+                    </tr>
+                {% endfor %}
+            {% else %}
+                <tr>
+                    <td>
+                        <p>暂无数据</p>
+                    </td>
+                </tr>
+            {% endif %}
+            </tbody>
+        </table>
+    </div>
+    {{ current_page.links }}
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="page-header">
+        <h3 style="text-align: center">{{ article.title }}</h3>
+    </div>
+    <div class="panel panel-theme article">
+        <div class="panel-heading article-title-bg">
+            <h3 class="panel-title article-title">{{ article.title }}</h3>
+        </div>
+        <div class="panel-body">
+            <p class="meta">
+                <span class="author">{{ article.user.name }}</span>
+                <span class="date"> {{ article.release_time }}</span>
+            </p>
+            <div class="desc-detail">
+                {{ article.content|safe }}
+            </div>
+        </div>
+    </div>
+{% endblock %}

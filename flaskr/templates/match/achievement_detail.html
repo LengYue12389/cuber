@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="page-header">
+        <h2>{{ match_obj.match_name }}</h2>
+    </div>
+    <div class="ach-detail-info">
+        <span class="tag-title">日期：</span><span>{{ match_obj.match_time.strftime('%Y-%m-%d') }}</span>
+        <span class="tag-title" style="margin-left: 25px">地点：</span><span>{{ match_obj.address }}</span>
+    </div>
+    <div class="panel panel-default" id="ach-data">
+    </div>
+    <script src="../../static/my/jquery.min.js"></script>
+    <script>
+        function getData() {
+            var data = $('#ach-data')
+            $.ajax({
+                type: 'GET',
+                url: '{{ url_for("match.achievement_data", match_id=match_obj.id) }}',
+                success: (res) => {
+                    data.html(res.data)
+                },
+                error: () => {
+                    alert('服务器繁忙，请稍后重试')
+                }
+            })
+        }
+
+        $(function () {
+            getData()
+        })
+
+        // 每隔  10 秒钟 运行一次，发送一个 ajax 请求
+        function runEvery10Sec() {
+            setTimeout(runEvery10Sec, 1000 * 10);
+            getData()
+        }
+
+        window.onload = function () {
+            runEvery10Sec()
+        }
+    </script>
+{% endblock %}
