@@ -29,7 +29,7 @@ python manager.py db init
 python manager.py db migrate
 # 创建数据库表
 python manager.py db upgrade 
+# 运行项目
+
 ```
 
-运行
-python manager.py
